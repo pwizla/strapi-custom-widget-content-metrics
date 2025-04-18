@@ -1,7 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Widget } from '@strapi/admin/strapi-admin';
-import { Table, Tbody, Tr, Td, Typography, Box } from '@strapi/design-system';
-import { useStrapiApp } from '@strapi/helper-plugin';
+import { Table, Tbody, Tr, Td, Typography, Box, Loader, EmptyStateLayout } from '@strapi/design-system';
+import { ExclamationMarkCircle, InformationSquare } from '@strapi/icons';
+// import { useStrapiApp } from '@strapi/helper-plugin';
+
+// Composants internes simples pour remplacer Widget.*
+const Loading = () => (
+  <Box padding={8} background="neutral100" style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Loader>Loading content metrics...</Loader>
+  </Box>
+);
+
+const Error = () => (
+  <Box padding={8} background="neutral100" style={{ height: '100%' }}>
+    <EmptyStateLayout
+      icon={<ExclamationMarkCircle />}
+      content="An error occurred while loading metrics"
+    />
+  </Box>
+);
+
+const NoData = ({ children }) => (
+  <Box padding={8} background="neutral100" style={{ height: '100%' }}>
+    <EmptyStateLayout
+      icon={<InformationSquare />}
+      content={children || "No content types found"}
+    />
+  </Box>
+);
 
 const MetricsWidget = () => {
   const [loading, setLoading] = useState(true);
@@ -29,15 +54,15 @@ const MetricsWidget = () => {
   }, []);
   
   if (loading) {
-    return <Widget.Loading />;
+    return <Loading />;
   }
   
   if (error) {
-    return <Widget.Error />;
+    return <Error />;
   }
   
   if (!metrics || Object.keys(metrics).length === 0) {
-    return <Widget.NoData>No content types found</Widget.NoData>;
+    return <NoData>No content types found</NoData>;
   }
   
   return (
