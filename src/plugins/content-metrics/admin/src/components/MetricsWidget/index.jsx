@@ -9,16 +9,13 @@ const MetricsWidget = () => {
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        // Make a request to a custom endpoint that returns content counts
         const response = await fetch('/api/content-metrics/count');
         const data = await response.json();
 
         console.log("data:", data);
         
-        // S'assurer que les données sont du format attendu
         const formattedData = {};
         
-        // Convertir chaque valeur en nombre ou en chaîne
         if (data && typeof data === 'object') {
           Object.keys(data).forEach(key => {
             const value = data[key];
