@@ -37,50 +37,41 @@ const MetricsWidget = () => {
   
   if (loading) {
     return (
-      <Box padding={4} background="neutral100">
-        <Typography variant="omega">Loading content metrics...</Typography>
-      </Box>
+      <Typography variant="omega">Loading content metrics...</Typography>
     );
   }
   
   if (error) {
     return (
-      <Box padding={4} background="neutral100">
-        <Typography variant="omega" textColor="danger600">
-          Error: {String(error)}
-        </Typography>
-      </Box>
+      <Typography variant="omega" textColor="danger600">
+        Error: {String(error)}
+      </Typography>
     );
   }
   
   if (!metrics || Object.keys(metrics).length === 0) {
     return (
-      <Box padding={4} background="neutral100">
-        <Typography variant="omega">No content types found</Typography>
-      </Box>
+      <Typography variant="omega">No content types found</Typography>
     );
   }
   
-  // Debug - afficher les métriques dans la console
   console.log("Metrics to render:", metrics);
   
   return (
-    <Box padding={4}>
-      <Table>
-        <Tbody>
-          {Object.entries(metrics).map(([contentType, count], index) => (
-            <Tr key={index}>
-              <Td>
-                <Typography variant="omega">{String(contentType)}</Typography>
-              </Td>
-              <Td>
-                <Typography variant="omega" fontWeight="bold">{String(count)}</Typography>
-              </Td>
-            </Tr>
-          ))}
-        </Tbody>
-      </Table>
-    </Box>
+    <Table>
+      <Tbody>
+        {Object.entries(metrics).map(([contentType, count], index) => (
+          <Tr key={index}>
+            <Td>
+              <Typography variant="omega">{String(contentType)}</Typography>
+            </Td>
+            <Td>
+              <Typography variant="omega" fontWeight="bold">{String(count)}</Typography>
+            </Td>
+          </Tr>
+        ))}
+      </Tbody>
+    </Table>
   );
 };
 
