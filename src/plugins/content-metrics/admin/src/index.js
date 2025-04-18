@@ -1,12 +1,11 @@
 import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
 import { PluginIcon } from './components/PluginIcon';
-import { ChartBar } from '@strapi/icons'; // Ajout de cette importation manquante
 
 export default {
   register(app) {
     app.addMenuLink({
-      to: `plugins/${PLUGIN_ID}`, // Correction ici - PluginIcon → PLUGIN_ID
+      to: `plugins/${PLUGIN_ID}`,
       icon: PluginIcon,
       intlLabel: {
         id: `${PLUGIN_ID}.plugin.name`,
@@ -25,11 +24,10 @@ export default {
       name: PLUGIN_ID,
     });
 
-    // Enregistrement du widget avec les corrections
     app.widgets.register({
-      icon: ChartBar,
+      icon: PluginIcon,
       title: {
-        id: `${PLUGIN_ID}.widget.metrics.title`, // Correction ici - pluginId → PLUGIN_ID
+        id: `${PLUGIN_ID}.widget.metrics.title`, 
         defaultMessage: 'Content Overview',
       },
       component: async () => {
@@ -37,7 +35,7 @@ export default {
         return component.default;
       },
       id: 'content-metrics',
-      pluginId: PLUGIN_ID, // Correction ici - pluginId → PLUGIN_ID
+      pluginId: PLUGIN_ID, 
     });
   },
 

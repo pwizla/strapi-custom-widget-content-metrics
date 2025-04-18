@@ -1,11 +1,15 @@
-import contentAPIRoutes from './content-api';
-import getContentCounts from './getContentCounts';
-
-const routes = {
+export default {
   'content-api': {
     type: 'content-api',
-    routes: contentAPIRoutes,
+    routes: [
+      {
+        method: 'GET',
+        path: '/count',
+        handler: 'metrics.getContentCounts',
+        config: {
+          policies: [],
+        },
+      },
+    ],
   },
 };
-
-export default routes;
