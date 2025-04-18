@@ -1,6 +1,7 @@
 import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
 import { PluginIcon } from './components/PluginIcon';
+import { Stethoscope } from '@strapi/icons'
 
 export default {
   register(app) {
@@ -25,10 +26,10 @@ export default {
     });
 
     app.widgets.register({
-      icon: PluginIcon,
+      icon: Stethoscope,
       title: {
         id: `${PLUGIN_ID}.widget.metrics.title`, 
-        defaultMessage: 'Content Overview',
+        defaultMessage: 'Content Metrics',
       },
       component: async () => {
         const component = await import('./components/MetricsWidget');
