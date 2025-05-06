@@ -37,6 +37,13 @@ export default {
       },
       id: 'content-metrics',
       pluginId: PLUGIN_ID, 
+      // link: {
+      //   label: {
+      //     id: `${pluginId}.widget.metrics.link`,
+      //     defaultMessage: 'View detailed metrics',
+      //   },
+      //   href: `/plugins/${pluginId}`,
+      // },
     });
   },
 

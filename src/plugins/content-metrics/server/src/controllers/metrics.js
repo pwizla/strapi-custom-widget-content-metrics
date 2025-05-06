@@ -1,5 +1,4 @@
 'use strict';
-
 module.exports = ({ strapi }) => ({
   async getContentCounts(ctx) {
     try {
@@ -20,7 +19,8 @@ module.exports = ({ strapi }) => ({
           );
           
         if (uid) {
-          const count = await strapi.db.query(uid).count();
+          // Using the count() method from the Document Service API
+          const count = await strapi.documents(uid).count();
           contentTypes[name] = count;
         }
       }
